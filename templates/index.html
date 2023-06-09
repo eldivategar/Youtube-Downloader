@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!-- ======= Hero Section ======= -->
+
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+
+
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" data-aos="fade-up"
+            data-aos-delay="500">
+            <strong>Something wrong!</strong> Check your link again. If still error call the contact in below.
+            <span class="alert_progress"></span>
+        </div>
+        {% endif %}
+
+        <div class="row gy-4 d-flex justify-content-between">
+
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <h2 data-aos="fade-up">Levaa Youtube Downloader</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Download Youtube videos using links or just titles. Get
+                    it easily, quickly, accurately, without consuming a lot of quota, and there are several resolution
+                    variants according to your wishes!</p>
+
+                {% if placeholder == 'Link' %}
+                <form action="{{ url_for('choose_resolution') }}" method="get"
+                    class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" name="link" id="link" class="form-control"
+                        placeholder="Paste your {{ placeholder }}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                {% elif placeholder == 'Title' %}
+                <form action="{{ url_for('get_list_video') }}" class="form-search d-flex align-items-stretch mb-3"
+                    data-aos="fade-up" data-aos-delay="200" method="get">
+                    <input type="text" class="form-control" name="title" placeholder="Insert your {{ placeholder }}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                {% endif %}
+
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                <img src="../static/assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
+            </div>
+
+        </div>
+    </div>
+</section><!-- End Hero Section -->
+
+<main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+        <div class="container">
+            <div class="section-header">
+                <span>Main Features</span>
+                <h2>Main Features</h2>
+
+            </div>
+            <div class="row gy-4">
+
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
+                    <div class="icon flex-shrink-0"><i class="fas fa-link"></i></div>
+                    <div>
+                        <h4 class="title">Download Video with Link</h4>
+                        <p class="description">Copy your link to search box for download</p>
+                        <a href="{{ url_for('home') }}" class="readmore stretched-link"><span>Lets
+                                Try</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon flex-shrink-0"><i class="bi bi-fonts"></i></div>
+                    <div>
+                        <h4 class="title">Download Video with Title</h4>
+                        <p class="description">Type the title you want to find and download as you like.</p>
+                        <a href="{{ url_for('home', placeholder='title') }}" class="readmore stretched-link"><span>Lets
+                                Try</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon flex-shrink-0"><i class="bi bi-collection-play-fill"></i></div>
+                    <div>
+                        <h4 class="title">Resolution Options</h4>
+                        <p class="description">There are various choices of resolutions from mp4 to mp3</p>
+                        <a href="#" class="readmore stretched-link"><span>Lets Try</span><i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+            </div>
+
+        </div>
+    </section><!-- End Featured Services Section -->
+
+</main><!-- End #main -->
+{% endblock body %}

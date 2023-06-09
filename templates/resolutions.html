@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center"
+      style="background-image: url('../static/assets/img/bg-main.gif');">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-10 text-center">
+            <h2>{{ title }}</h2>
+            <img src="{{ thumbnail }}" alt="thumbnail doesn't exist" width="500" height="300">
+            <p>{{ description }}</p>
+            <hr style="color: white;">
+            <ul class="info-video">
+              <li><i class="bi bi-c-circle"></i><b> Channel: </b>{{ channel }}</li>
+              <li><i class="bi bi-eye"></i><b> Views: </b>{{ views }}</li>
+              <li><i class="bi bi-hand-thumbs-up"></i><b> Likes: </b>{{ likes}}</li>
+              <li><i class="bi bi-clock"></i><b> Duration: </b>{{ duration }}</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="container">
+        <ol>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li>Choose Resolution</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Breadcrumbs -->
+
+
+  <!-- Button Navigasi MP4/MP3 -->
+  <div class="container justify-content-center d-flex">
+    <button type="button" id="mp4-tab" class="btn btn-outline-purple" aria-current="true" style="margin-right: 5px;"><i class="fas fa-video"></i>
+      MP4</button>
+    <button type="button" id="mp3-tab" class="btn btn-outline-purple"><i class="fas fa-music"></i> MP3</button>
+  </div>
+
+
+  <!-- ======= MP4 Section ======= -->
+  <section id="mp4-section" class="pricing">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row gy-4">
+
+        {% for resolution, filesize in resolutions_MP4 %}
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="pricing-item featured">            
+
+            {% if resolution == '1080' %}
+            <h3>Full High Definition (FHD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Higher and sharper image detail compared to lower resolutions such as 720p
+              </li>
+              <li><i class="bi bi-check"></i> Richer and livelier colors and contrast</li>
+              <li><i class="bi bi-check"></i> Larger screen can accommodate more image detail and is easier to view from
+                a distance</li>
+              <li><i class="bi bi-check"></i> Provides a more immersive and profound watching experience</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='1080', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+
+            {% if resolution == '720' %}
+            <h3>High Definition (HD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Very good video quality</li>
+              <li><i class="bi bi-check"></i> Suitable for devices with very good internet connection</li>
+              <li><i class="bi bi-check"></i> Requires large storage space</li>
+              <li><i class="bi bi-check"></i> Very sharp image quality</li>
+              <li><i class="bi bi-check"></i> Cuitable for watching on medium screen, such as on a smartphone or tablet
+              </li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='720', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '480' %}
+            <h3>Standard Definition (SD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Good video quality</li>
+              <li><i class="bi bi-check"></i> Suitable for devices with good internet connection</li>
+              <li><i class="bi bi-check"></i> Requires fairly large storage space</li>
+              <li><i class="bi bi-check"></i> Very sharp image quality</li>
+              <li><i class="bi bi-check"></i> Suitable for watching on small screens</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='480', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '360' %}
+            <h3>Standard Definition (SD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Standard video quality</li>
+              <li><i class="bi bi-check"></i> Suitable for devices with stable internet connection</li>
+              <li><i class="bi bi-check"></i> Requires moderate storage space</li>
+              <li><i class="bi bi-check"></i> Sharp image quality</li>
+              <li><i class="bi bi-check"></i> Suitable for watching on medium-sized screens</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='360', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '240' %}
+            <h3>Standard Definition (SD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Medium video quality</li>
+              <li><i class="bi bi-check"></i> Suitable for devices with moderate internet connection</li>
+              <li><i class="bi bi-check"></i> Requires little storage space</li>
+              <li><i class="bi bi-check"></i> Image quality is sufficiently sharp</li>
+              <li><i class="bi bi-check"></i> Suitable for watching on small screens</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='240', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '144' %}
+            <h3>Low Definition (LD)</h3>
+            <h4>{{ resolution }}<span>pixel</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i>Low video quality</li>
+              <li><i class="bi bi-check"></i>Suitable for devices with slow internet connection</li>
+              <li><i class="bi bi-check"></i>Requires little storage space</li>
+              <li><i class="bi bi-check"></i>Does not have sharp image quality</li>
+              <li><i class="bi bi-check"></i>Not suitable for watching on large screens</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='144', title=title, type='video' )}}"
+              class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+          </div>
+        </div><!-- End Pricing Item -->
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </section><!-- End MP4 Section -->
+
+
+  <section id="mp3-section" class="pricing" style="display: none;">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row gy-4">
+
+        {% for resolution, filesize in resolutions_MP3 %}
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="pricing-item featured">            
+
+            {% if resolution == '160' %}
+            <h3>Very High Quality Audio</h3>
+            <h4>{{ resolution }}<span>kbps</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Excellent audio quality</li>
+              <li><i class="bi bi-check"></i> Well-suited for high-fidelity music streaming</li>
+              <li><i class="bi bi-check"></i> Minimal audio compression</li>
+              <li><i class="bi bi-check"></i> Suitable for audiophiles and critical listening</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='160', title=title, type='audio')}}" class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '128' %}
+            <h3>High Quality Audio</h3>
+            <h4>{{ resolution }}<span>kbps</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> High-quality audio reproduction</li>
+              <li><i class="bi bi-check"></i> Well-suited for general music streaming</li>
+              <li><i class="bi bi-check"></i> Reduced audio artifacts</li>
+              <li><i class="bi bi-check"></i> Suitable for most casual listening purposes</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='128', title=title, type='audio')}}" class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '70' %}
+            <h3>Good Quality Audio</h3>
+            <h4>{{ resolution }}<span>kbps</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Enhanced audio fidelity</li>
+              <li><i class="bi bi-check"></i> Clearer and more detailed sound</li>
+              <li><i class="bi bi-check"></i> Suitable for streaming podcasts or spoken content</li>
+              <li><i class="bi bi-check"></i> Adequate for background music in videos</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='70', title=title, type='audio')}}" class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '50' %}
+            <h3>Fair Quality Audio</h3>
+            <h4>{{ resolution }}<span>kbps</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Improved audio clarity compared to 48 kbps</li>
+              <li><i class="bi bi-check"></i> Reduced compression artifacts</li>
+              <li><i class="bi bi-check"></i> Good for low-quality music streaming</li>
+              <li><i class="bi bi-check"></i> Reasonable balance between quality and file size</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='50', title=title, type='audio')}}" class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+            {% if resolution == '48' %}
+            <h3>Low Quality Audio</h3>
+            <h4>{{ resolution }}<span>kbps</span></h4>
+            <ul>
+              <li><i class="bi bi-check"></i> Low bandwidth requirement</li>
+              <li><i class="bi bi-check"></i> Suitable for basic audio playback</li>
+              <li><i class="bi bi-check"></i> Decent audio quality for voice recordings</li>
+              <li><i class="bi bi-check"></i> Small file size</li>
+            </ul>
+            <h5 class="filesize">File size : {{ filesize }}</h5>
+            <a href="{{ url_for('download_files', VIDEO_ID=VIDEO_ID, resolution='48', title=title, type='audio')}}" class="buy-btn"><i class="fas fa-cloud-download-alt"> </i> Download</a>
+            {% endif %}
+
+          </div>
+        </div><!-- End Pricing Item -->
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+{% endblock body %}

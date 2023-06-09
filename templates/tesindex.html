@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouTube Video Downloader</title>
+</head>
+
+<body>
+    <h1>YouTube Video Downloader</h1>
+    <form method="POST" action="{{url_for('download')}}">
+        <input type="text" name="url" placeholder="Masukkan URL video YouTube" required>
+        <input type="submit" value="Download">
+    </form>
+    <h2>Progress:</h2>
+    <div id="progress"></div>
+
+
+
+</body>
+
+</html>
